@@ -1,8 +1,10 @@
-数据来源：
-http://blog.csdn.net/mao834099514/article/details/54599871
+--http://blog.csdn.net/mao834099514/article/details/54599871
 
---后台管理员表
---password    密码,规则md5(md5(passwd)+salt)
+drop database if exists teamtalk;
+create database teamtalk;
+use teamtalk;
+
+--password
 CREATE TABLE `IMAdmin` (
     `id` mediumint(6) unsigned NOT NULL AUTO_INCREMENT,
     `uname` varchar(40) NOT NULL COMMENT '用户名',
@@ -13,7 +15,6 @@ CREATE TABLE `IMAdmin` (
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
 
---存储语音地址
 CREATE TABLE `IMAudio` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `fromId` int(11) unsigned NOT NULL COMMENT '发送者Id',
