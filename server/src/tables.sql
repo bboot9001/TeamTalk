@@ -1,10 +1,8 @@
---http://blog.csdn.net/mao834099514/article/details/54599871
 
 drop database if exists teamtalk;
 create database teamtalk;
 use teamtalk;
 
---password
 CREATE TABLE `IMAdmin` (
     `id` mediumint(6) unsigned NOT NULL AUTO_INCREMENT,
     `uname` varchar(40) NOT NULL COMMENT '用户名',
@@ -27,7 +25,6 @@ CREATE TABLE `IMAudio` (
     KEY `idx_fromId_toId` (`fromId`,`toId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin
 
---存储部门信息
 CREATE TABLE `IMDepart` (
     `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '部门id',
     `departName` varchar(64) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '部门名称',
@@ -41,7 +38,6 @@ CREATE TABLE `IMDepart` (
     KEY `idx_priority_status` (`priority`,`status`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin
 
---发现配置表
 CREATE TABLE `IMDiscovery` (
     `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
     `itemName` varchar(64) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '名称',
@@ -54,7 +50,6 @@ CREATE TABLE `IMDiscovery` (
     KEY `idx_itemName` (`itemName`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin
 
---群组表
 CREATE TABLE `IMGroup` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `name` varchar(256) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '群名称',
@@ -72,7 +67,6 @@ CREATE TABLE `IMGroup` (
     KEY `idx_creator` (`creator`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='IM群信息'
 
---群成员表
 CREATE TABLE `IMGroupMember` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `groupId` int(11) unsigned NOT NULL COMMENT '群Id',
@@ -86,7 +80,6 @@ CREATE TABLE `IMGroupMember` (
     KEY `idx_groupId_updated` (`groupId`,`updated`)
 ) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8 COMMENT='用户和群的关系表'
 
---群消息表,x代表第几张表，目前做了分表有8张:0-7.消息具体在哪张表中，是groupId%IMGroupMessage表的数目
 CREATE TABLE `IMGroupMessage_(x)` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `groupId` int(11) unsigned NOT NULL COMMENT '用户的关系id',
@@ -102,7 +95,6 @@ CREATE TABLE `IMGroupMessage_(x)` (
     KEY `idx_groupId_msgId_status_created` (`groupId`,`msgId`,`status`,`created`)   
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='IM群消息表'
 
---消息表，x代表第几张表，目前做了分表有8张:0-7.具体在那张表，是relateId%IMMessage表数目.
 CREATE TABLE `IMMessage_0` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `relateId` int(11) unsigned NOT NULL COMMENT '用户的关系id',
@@ -119,7 +111,6 @@ CREATE TABLE `IMMessage_0` (
     KEY `idx_fromId_toId_created` (`fromId`,`toId`,`status`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin
 
---最近联系人(会话)表。
 CREATE TABLE `IMRecentSession` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `userId` int(11) unsigned NOT NULL COMMENT '用户id',
@@ -133,7 +124,6 @@ CREATE TABLE `IMRecentSession` (
     KEY `idx_userId_peerId_type` (`userId`,`peerId`,`type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
 
---用户关系表，标识两个用户之间的唯一关系id，用于消息分表。relationId % 消息表数目。
 CREATE TABLE `IMRelationShip` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `smallId` int(11) unsigned NOT NULL COMMENT '用户A的id',
@@ -145,8 +135,6 @@ CREATE TABLE `IMRelationShip` (
     KEY `idx_smallId_bigId_status_updated` (`smallId`,`bigId`,`status`,`updated`)   
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
 
---用户表
---password    密码,规则md5(md5(passwd)+salt)
 CREATE TABLE `IMUser` (
     `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '用户id',
     `sex` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '1男2女0未知',
