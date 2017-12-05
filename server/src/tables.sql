@@ -11,7 +11,7 @@ CREATE TABLE `IMAdmin` (
     `created` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
     `updated` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `IMAudio` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -23,7 +23,7 @@ CREATE TABLE `IMAudio` (
     `created` int(11) unsigned NOT NULL COMMENT '创建时间',
     PRIMARY KEY (`id`),
     KEY `idx_fromId_toId` (`fromId`,`toId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 CREATE TABLE `IMDepart` (
     `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '部门id',
@@ -36,7 +36,7 @@ CREATE TABLE `IMDepart` (
     PRIMARY KEY (`id`),
     KEY `idx_departName` (`departName`),
     KEY `idx_priority_status` (`priority`,`status`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 CREATE TABLE `IMDiscovery` (
     `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
@@ -48,7 +48,7 @@ CREATE TABLE `IMDiscovery` (
     `updated` int(11) unsigned NOT NULL COMMENT '更新时间',
     PRIMARY KEY (`id`),
     KEY `idx_itemName` (`itemName`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 CREATE TABLE `IMGroup` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -65,7 +65,7 @@ CREATE TABLE `IMGroup` (
     PRIMARY KEY (`id`),
     KEY `idx_name` (`name`(191)),
     KEY `idx_creator` (`creator`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='IM群信息'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='IM群信息';
 
 CREATE TABLE `IMGroupMember` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -78,7 +78,7 @@ CREATE TABLE `IMGroupMember` (
     KEY `idx_groupId_userId_status` (`groupId`,`userId`,`status`),
     KEY `idx_userId_status_updated` (`userId`,`status`,`updated`),
     KEY `idx_groupId_updated` (`groupId`,`updated`)
-) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8 COMMENT='用户和群的关系表'
+) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8 COMMENT='用户和群的关系表';
 
 CREATE TABLE `IMGroupMessage_(x)` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -93,7 +93,7 @@ CREATE TABLE `IMGroupMessage_(x)` (
     PRIMARY KEY (`id`),
     KEY `idx_groupId_status_created` (`groupId`,`status`,`created`),
     KEY `idx_groupId_msgId_status_created` (`groupId`,`msgId`,`status`,`created`)   
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='IM群消息表'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='IM群消息表';
 
 CREATE TABLE `IMMessage_0` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -109,7 +109,7 @@ CREATE TABLE `IMMessage_0` (
     KEY `idx_relateId_status_created` (`relateId`,`status`,`created`),
     KEY `idx_relateId_status_msgId_created` (`relateId`,`status`,`msgId`,`created`),
     KEY `idx_fromId_toId_created` (`fromId`,`toId`,`status`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 CREATE TABLE `IMRecentSession` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -122,7 +122,7 @@ CREATE TABLE `IMRecentSession` (
     PRIMARY KEY (`id`),
     KEY `idx_userId_peerId_status_updated` (`userId`,`peerId`,`status`,`updated`),
     KEY `idx_userId_peerId_type` (`userId`,`peerId`,`type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `IMRelationShip` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -133,7 +133,7 @@ CREATE TABLE `IMRelationShip` (
     `updated` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
     PRIMARY KEY (`id`),
     KEY `idx_smallId_bigId_status_updated` (`smallId`,`bigId`,`status`,`updated`)   
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `IMUser` (
     `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '用户id',
@@ -155,7 +155,7 @@ CREATE TABLE `IMUser` (
     KEY `idx_domain` (`domain`),
     KEY `idx_name` (`name`),
     KEY `idx_phone` (`phone`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 
 
