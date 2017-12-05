@@ -1,4 +1,4 @@
-﻿
+﻿--创建teamtalk数据库
 drop database if exists teamtalk;
 create database teamtalk;
 use teamtalk;
