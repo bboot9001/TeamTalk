@@ -1,38 +1,38 @@
-
+ï»¿
 drop database if exists teamtalk;
 create database teamtalk;
 use teamtalk;
 
 CREATE TABLE `IMAdmin` (
     `id` mediumint(6) unsigned NOT NULL AUTO_INCREMENT,
-    `uname` varchar(40) NOT NULL COMMENT 'ÓÃ»§Ãû',
-    `pwd` char(32) NOT NULL COMMENT '¾­¹ımd5¼ÓÃÜµÄÃÜÂë',
-    `status` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT 'ÓÃ»§×´Ì¬ 0 :Õı³£ 1:É¾³ı ¿ÉÀ©Õ¹',
-    `created` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '´´½¨Ê±¼ä',
-    `updated` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '¸üĞÂÊ±¼ä',
+    `uname` varchar(40) NOT NULL COMMENT 'ç”¨æˆ·å',
+    `pwd` char(32) NOT NULL COMMENT 'ç»è¿‡md5åŠ å¯†çš„å¯†ç ',
+    `status` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT 'ç”¨æˆ·çŠ¶æ€ 0 :æ­£å¸¸ 1:åˆ é™¤ å¯æ‰©å±•',
+    `created` int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'åˆ›å»ºæ—¶é—´',
+    `updated` int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'æ›´æ–°æ—¶é—´',
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
 
 CREATE TABLE `IMAudio` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
-    `fromId` int(11) unsigned NOT NULL COMMENT '·¢ËÍÕßId',
-    `toId` int(11) unsigned NOT NULL COMMENT '½ÓÊÕÕßId',
-    `path` varchar(255) COLLATE utf8mb4_bin DEFAULT '' COMMENT 'ÓïÒô´æ´¢µÄµØÖ·',
-    `size` int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'ÎÄ¼ş´óĞ¡',
-    `duration` int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'ÓïÒôÊ±³¤',
-    `created` int(11) unsigned NOT NULL COMMENT '´´½¨Ê±¼ä',
+    `fromId` int(11) unsigned NOT NULL COMMENT 'å‘é€è€…Id',
+    `toId` int(11) unsigned NOT NULL COMMENT 'æ¥æ”¶è€…Id',
+    `path` varchar(255) COLLATE utf8mb4_bin DEFAULT '' COMMENT 'è¯­éŸ³å­˜å‚¨çš„åœ°å€',
+    `size` int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'æ–‡ä»¶å¤§å°',
+    `duration` int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'è¯­éŸ³æ—¶é•¿',
+    `created` int(11) unsigned NOT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
     PRIMARY KEY (`id`),
     KEY `idx_fromId_toId` (`fromId`,`toId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin
 
 CREATE TABLE `IMDepart` (
-    `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '²¿ÃÅid',
-    `departName` varchar(64) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '²¿ÃÅÃû³Æ',
-    `priority` int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'ÏÔÊ¾ÓÅÏÈ¼¶,ÏàÍ¬ÓÅÏÈ¼¶°´Æ´ÒôË³ĞòÅÅÁĞ',
-    `parentId` int(11) unsigned NOT NULL COMMENT 'ÉÏ¼¶²¿ÃÅid',
-    `status` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '×´Ì¬',
-    `created` int(11) unsigned NOT NULL COMMENT '´´½¨Ê±¼ä',
-    `updated` int(11) unsigned NOT NULL COMMENT '¸üĞÂÊ±¼ä',
+    `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'éƒ¨é—¨id',
+    `departName` varchar(64) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT 'éƒ¨é—¨åç§°',
+    `priority` int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'æ˜¾ç¤ºä¼˜å…ˆçº§,ç›¸åŒä¼˜å…ˆçº§æŒ‰æ‹¼éŸ³é¡ºåºæ’åˆ—',
+    `parentId` int(11) unsigned NOT NULL COMMENT 'ä¸Šçº§éƒ¨é—¨id',
+    `status` int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'çŠ¶æ€',
+    `created` int(11) unsigned NOT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+    `updated` int(11) unsigned NOT NULL COMMENT 'æ›´æ–°æ—¶é—´',
     PRIMARY KEY (`id`),
     KEY `idx_departName` (`departName`),
     KEY `idx_priority_status` (`priority`,`status`)
@@ -40,72 +40,72 @@ CREATE TABLE `IMDepart` (
 
 CREATE TABLE `IMDiscovery` (
     `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
-    `itemName` varchar(64) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT 'Ãû³Æ',
+    `itemName` varchar(64) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT 'åç§°',
     `itemUrl` varchar(64) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT 'URL',
-    `itemPriority` int(11) unsigned NOT NULL COMMENT 'ÏÔÊ¾ÓÅÏÈ¼¶',
-    `status` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '×´Ì¬',
-    `created` int(11) unsigned NOT NULL COMMENT '´´½¨Ê±¼ä',
-    `updated` int(11) unsigned NOT NULL COMMENT '¸üĞÂÊ±¼ä',
+    `itemPriority` int(11) unsigned NOT NULL COMMENT 'æ˜¾ç¤ºä¼˜å…ˆçº§',
+    `status` int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'çŠ¶æ€',
+    `created` int(11) unsigned NOT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+    `updated` int(11) unsigned NOT NULL COMMENT 'æ›´æ–°æ—¶é—´',
     PRIMARY KEY (`id`),
     KEY `idx_itemName` (`itemName`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin
 
 CREATE TABLE `IMGroup` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
-    `name` varchar(256) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT 'ÈºÃû³Æ',
-    `avatar` varchar(256) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT 'ÈºÍ·Ïñ',
-    `creator` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '´´½¨ÕßÓÃ»§id',
-    `type` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT 'Èº×éÀàĞÍ£¬1-¹Ì¶¨;2-ÁÙÊ±Èº',
-    `userCnt` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '³ÉÔ±ÈËÊı',
-    `status` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT 'ÊÇ·ñÉ¾³ı,0-Õı³££¬1-É¾³ı',
-    `version` int(11) unsigned NOT NULL DEFAULT '1' COMMENT 'Èº°æ±¾ºÅ',
-    `lastChated` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '×îºóÁÄÌìÊ±¼ä',
-    `created` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '´´½¨Ê±¼ä',
-    `updated` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '¸üĞÂÊ±¼ä',
+    `name` varchar(256) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT 'ç¾¤åç§°',
+    `avatar` varchar(256) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT 'ç¾¤å¤´åƒ',
+    `creator` int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'åˆ›å»ºè€…ç”¨æˆ·id',
+    `type` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT 'ç¾¤ç»„ç±»å‹ï¼Œ1-å›ºå®š;2-ä¸´æ—¶ç¾¤',
+    `userCnt` int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'æˆå‘˜äººæ•°',
+    `status` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT 'æ˜¯å¦åˆ é™¤,0-æ­£å¸¸ï¼Œ1-åˆ é™¤',
+    `version` int(11) unsigned NOT NULL DEFAULT '1' COMMENT 'ç¾¤ç‰ˆæœ¬å·',
+    `lastChated` int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'æœ€åèŠå¤©æ—¶é—´',
+    `created` int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'åˆ›å»ºæ—¶é—´',
+    `updated` int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'æ›´æ–°æ—¶é—´',
     PRIMARY KEY (`id`),
     KEY `idx_name` (`name`(191)),
     KEY `idx_creator` (`creator`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='IMÈºĞÅÏ¢'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='IMç¾¤ä¿¡æ¯'
 
 CREATE TABLE `IMGroupMember` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
-    `groupId` int(11) unsigned NOT NULL COMMENT 'ÈºId',
-    `userId` int(11) unsigned NOT NULL COMMENT 'ÓÃ»§id',
-    `status` tinyint(4) unsigned NOT NULL DEFAULT '1' COMMENT 'ÊÇ·ñÍË³öÈº£¬0-Õı³££¬1-ÒÑÍË³ö',
-    `created` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '´´½¨Ê±¼ä',
-    `updated` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '¸üĞÂÊ±¼ä',
+    `groupId` int(11) unsigned NOT NULL COMMENT 'ç¾¤Id',
+    `userId` int(11) unsigned NOT NULL COMMENT 'ç”¨æˆ·id',
+    `status` tinyint(4) unsigned NOT NULL DEFAULT '1' COMMENT 'æ˜¯å¦é€€å‡ºç¾¤ï¼Œ0-æ­£å¸¸ï¼Œ1-å·²é€€å‡º',
+    `created` int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'åˆ›å»ºæ—¶é—´',
+    `updated` int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'æ›´æ–°æ—¶é—´',
     PRIMARY KEY (`id`),
     KEY `idx_groupId_userId_status` (`groupId`,`userId`,`status`),
     KEY `idx_userId_status_updated` (`userId`,`status`,`updated`),
     KEY `idx_groupId_updated` (`groupId`,`updated`)
-) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8 COMMENT='ÓÃ»§ºÍÈºµÄ¹ØÏµ±í'
+) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8 COMMENT='ç”¨æˆ·å’Œç¾¤çš„å…³ç³»è¡¨'
 
 CREATE TABLE `IMGroupMessage_(x)` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
-    `groupId` int(11) unsigned NOT NULL COMMENT 'ÓÃ»§µÄ¹ØÏµid',
-    `userId` int(11) unsigned NOT NULL COMMENT '·¢ËÍÓÃ»§µÄid',
-    `msgId` int(11) unsigned NOT NULL COMMENT 'ÏûÏ¢ID',
-    `content` varchar(4096) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT 'ÏûÏ¢ÄÚÈİ',
-    `type` tinyint(3) unsigned NOT NULL DEFAULT '2' COMMENT 'ÈºÏûÏ¢ÀàĞÍ,101ÎªÈºÓïÒô,2ÎªÎÄ±¾',
-    `status` int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'ÏûÏ¢×´Ì¬',
-    `created` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '´´½¨Ê±¼ä',
-    `updated` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '¸üĞÂÊ±¼ä',
+    `groupId` int(11) unsigned NOT NULL COMMENT 'ç”¨æˆ·çš„å…³ç³»id',
+    `userId` int(11) unsigned NOT NULL COMMENT 'å‘é€ç”¨æˆ·çš„id',
+    `msgId` int(11) unsigned NOT NULL COMMENT 'æ¶ˆæ¯ID',
+    `content` varchar(4096) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT 'æ¶ˆæ¯å†…å®¹',
+    `type` tinyint(3) unsigned NOT NULL DEFAULT '2' COMMENT 'ç¾¤æ¶ˆæ¯ç±»å‹,101ä¸ºç¾¤è¯­éŸ³,2ä¸ºæ–‡æœ¬',
+    `status` int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'æ¶ˆæ¯çŠ¶æ€',
+    `created` int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'åˆ›å»ºæ—¶é—´',
+    `updated` int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'æ›´æ–°æ—¶é—´',
     PRIMARY KEY (`id`),
     KEY `idx_groupId_status_created` (`groupId`,`status`,`created`),
     KEY `idx_groupId_msgId_status_created` (`groupId`,`msgId`,`status`,`created`)   
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='IMÈºÏûÏ¢±í'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='IMç¾¤æ¶ˆæ¯è¡¨'
 
 CREATE TABLE `IMMessage_0` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
-    `relateId` int(11) unsigned NOT NULL COMMENT 'ÓÃ»§µÄ¹ØÏµid',
-    `fromId` int(11) unsigned NOT NULL COMMENT '·¢ËÍÓÃ»§µÄid',
-    `toId` int(11) unsigned NOT NULL COMMENT '½ÓÊÕÓÃ»§µÄid',
-    `msgId` int(11) unsigned NOT NULL COMMENT 'ÏûÏ¢ID',
-    `content` varchar(4096) COLLATE utf8mb4_bin DEFAULT '' COMMENT 'ÏûÏ¢ÄÚÈİ',
-    `type` tinyint(2) unsigned NOT NULL DEFAULT '1' COMMENT 'ÏûÏ¢ÀàĞÍ',
-    `status` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '0Õı³£ 1±»É¾³ı',
-    `created` int(11) unsigned NOT NULL COMMENT '´´½¨Ê±¼ä', 
-    `updated` int(11) unsigned NOT NULL COMMENT '¸üĞÂÊ±¼ä',     PRIMARY KEY (`id`),
+    `relateId` int(11) unsigned NOT NULL COMMENT 'ç”¨æˆ·çš„å…³ç³»id',
+    `fromId` int(11) unsigned NOT NULL COMMENT 'å‘é€ç”¨æˆ·çš„id',
+    `toId` int(11) unsigned NOT NULL COMMENT 'æ¥æ”¶ç”¨æˆ·çš„id',
+    `msgId` int(11) unsigned NOT NULL COMMENT 'æ¶ˆæ¯ID',
+    `content` varchar(4096) COLLATE utf8mb4_bin DEFAULT '' COMMENT 'æ¶ˆæ¯å†…å®¹',
+    `type` tinyint(2) unsigned NOT NULL DEFAULT '1' COMMENT 'æ¶ˆæ¯ç±»å‹',
+    `status` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '0æ­£å¸¸ 1è¢«åˆ é™¤',
+    `created` int(11) unsigned NOT NULL COMMENT 'åˆ›å»ºæ—¶é—´', 
+    `updated` int(11) unsigned NOT NULL COMMENT 'æ›´æ–°æ—¶é—´',     PRIMARY KEY (`id`),
     KEY `idx_relateId_status_created` (`relateId`,`status`,`created`),
     KEY `idx_relateId_status_msgId_created` (`relateId`,`status`,`msgId`,`created`),
     KEY `idx_fromId_toId_created` (`fromId`,`toId`,`status`)
@@ -113,12 +113,12 @@ CREATE TABLE `IMMessage_0` (
 
 CREATE TABLE `IMRecentSession` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
-    `userId` int(11) unsigned NOT NULL COMMENT 'ÓÃ»§id',
-    `peerId` int(11) unsigned NOT NULL COMMENT '¶Ô·½id',
-    `type` tinyint(1) unsigned DEFAULT '0' COMMENT 'ÀàĞÍ£¬1-ÓÃ»§,2-Èº×é',
-    `status` tinyint(1) unsigned DEFAULT '0' COMMENT 'ÓÃ»§:0-Õı³£, 1-ÓÃ»§AÉ¾³ı,Èº×é:0-Õı³£, 1-±»É¾³ı',
-    `created` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '´´½¨Ê±¼ä',
-    `updated` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '¸üĞÂÊ±¼ä',
+    `userId` int(11) unsigned NOT NULL COMMENT 'ç”¨æˆ·id',
+    `peerId` int(11) unsigned NOT NULL COMMENT 'å¯¹æ–¹id',
+    `type` tinyint(1) unsigned DEFAULT '0' COMMENT 'ç±»å‹ï¼Œ1-ç”¨æˆ·,2-ç¾¤ç»„',
+    `status` tinyint(1) unsigned DEFAULT '0' COMMENT 'ç”¨æˆ·:0-æ­£å¸¸, 1-ç”¨æˆ·Aåˆ é™¤,ç¾¤ç»„:0-æ­£å¸¸, 1-è¢«åˆ é™¤',
+    `created` int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'åˆ›å»ºæ—¶é—´',
+    `updated` int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'æ›´æ–°æ—¶é—´',
     PRIMARY KEY (`id`),
     KEY `idx_userId_peerId_status_updated` (`userId`,`peerId`,`status`,`updated`),
     KEY `idx_userId_peerId_type` (`userId`,`peerId`,`type`)
@@ -126,31 +126,31 @@ CREATE TABLE `IMRecentSession` (
 
 CREATE TABLE `IMRelationShip` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
-    `smallId` int(11) unsigned NOT NULL COMMENT 'ÓÃ»§AµÄid',
-    `bigId` int(11) unsigned NOT NULL COMMENT 'ÓÃ»§BµÄid',
-    `status` tinyint(1) unsigned DEFAULT '0' COMMENT 'ÓÃ»§:0-Õı³£, 1-ÓÃ»§AÉ¾³ı,Èº×é:0-Õı³£, 1-±»É¾³ı',
-    `created` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '´´½¨Ê±¼ä',
-    `updated` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '¸üĞÂÊ±¼ä',
+    `smallId` int(11) unsigned NOT NULL COMMENT 'ç”¨æˆ·Açš„id',
+    `bigId` int(11) unsigned NOT NULL COMMENT 'ç”¨æˆ·Bçš„id',
+    `status` tinyint(1) unsigned DEFAULT '0' COMMENT 'ç”¨æˆ·:0-æ­£å¸¸, 1-ç”¨æˆ·Aåˆ é™¤,ç¾¤ç»„:0-æ­£å¸¸, 1-è¢«åˆ é™¤',
+    `created` int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'åˆ›å»ºæ—¶é—´',
+    `updated` int(11) unsigned NOT NULL DEFAULT '0' COMMENT 'æ›´æ–°æ—¶é—´',
     PRIMARY KEY (`id`),
     KEY `idx_smallId_bigId_status_updated` (`smallId`,`bigId`,`status`,`updated`)   
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
 
 CREATE TABLE `IMUser` (
-    `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ÓÃ»§id',
-    `sex` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '1ÄĞ2Å®0Î´Öª',
-    `name` varchar(32) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT 'ÓÃ»§Ãû',
-    `domain` varchar(32) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT 'Æ´Òô',
-    `nick` varchar(32) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '»¨Ãû,´ÂºÅµÈ',
-    `password` varchar(32) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT 'ÃÜÂë',
-    `salt` varchar(4) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '»ìÏıÂë',
-    `phone` varchar(11) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT 'ÊÖ»úºÅÂë',
+    `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ç”¨æˆ·id',
+    `sex` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '1ç”·2å¥³0æœªçŸ¥',
+    `name` varchar(32) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT 'ç”¨æˆ·å',
+    `domain` varchar(32) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT 'æ‹¼éŸ³',
+    `nick` varchar(32) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT 'èŠ±å,ç»°å·ç­‰',
+    `password` varchar(32) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT 'å¯†ç ',
+    `salt` varchar(4) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT 'æ··æ·†ç ',
+    `phone` varchar(11) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT 'æ‰‹æœºå·ç ',
     `email` varchar(64) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT 'email',
-    `avatar` varchar(255) COLLATE utf8mb4_bin DEFAULT '' COMMENT '×Ô¶¨ÒåÓÃ»§Í·Ïñ',
-    `departId` int(11) unsigned NOT NULL COMMENT 'ËùÊô²¿ÃÅId',
-    `status` tinyint(2) unsigned DEFAULT '0' COMMENT '1. ÊÔÓÃÆÚ 2. ÕıÊ½ 3. ÀëÖ° 4.ÊµÏ°',
-	`sign_info` varchar(32) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '¸öĞÔÇ©Ãû',
-    `created` int(11) unsigned NOT NULL COMMENT '´´½¨Ê±¼ä',
-    `updated` int(11) unsigned NOT NULL COMMENT '¸üĞÂÊ±¼ä',
+    `avatar` varchar(255) COLLATE utf8mb4_bin DEFAULT '' COMMENT 'è‡ªå®šä¹‰ç”¨æˆ·å¤´åƒ',
+    `departId` int(11) unsigned NOT NULL COMMENT 'æ‰€å±éƒ¨é—¨Id',
+    `status` tinyint(2) unsigned DEFAULT '0' COMMENT '1. è¯•ç”¨æœŸ 2. æ­£å¼ 3. ç¦»èŒ 4.å®ä¹ ',
+	`sign_info` varchar(32) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT 'ä¸ªæ€§ç­¾å',
+    `created` int(11) unsigned NOT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+    `updated` int(11) unsigned NOT NULL COMMENT 'æ›´æ–°æ—¶é—´',
     PRIMARY KEY (`id`),
     KEY `idx_domain` (`domain`),
     KEY `idx_name` (`name`),
