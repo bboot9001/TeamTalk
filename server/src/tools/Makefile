@@ -1,2 +1,2 @@
 daeml: daeml.cpp
-	g++ -Wall -o ../bin/daeml daeml.cpp
+	g++ -Wall -o daeml daeml.cpp
