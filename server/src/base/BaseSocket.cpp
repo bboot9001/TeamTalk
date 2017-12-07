@@ -327,6 +327,7 @@ void CBaseSocket::_AcceptNewSocket()
 		snprintf(ip_str, sizeof(ip_str), "%d.%d.%d.%d", ip >> 24, (ip >> 16) & 0xFF, (ip >> 8) & 0xFF, ip & 0xFF);
 
 		log("AcceptNewSocket, socket=%d from %s:%d\n", fd, ip_str, port);
+		log("AcceptNewSocket111, socket=%d from %s:%d\n", fd, ip_str, port);
 
 		pSocket->SetSocket(fd);
 		pSocket->SetCallback(m_callback);
@@ -334,14 +335,16 @@ void CBaseSocket::_AcceptNewSocket()
 		pSocket->SetState(SOCKET_STATE_CONNECTED);
 		pSocket->SetRemoteIP(ip_str);
 		pSocket->SetRemotePort(port);
+		log("AcceptNewSocket222, socket=%d from %s:%d\n", fd, ip_str, port);
 
 		_SetNoDelay(fd);
 		_SetNonblock(fd);
 		AddBaseSocket(pSocket);
+		log("AcceptNewSocket333, socket=%d from %s:%d\n", fd, ip_str, port);
 		CEventDispatch::Instance()->AddEvent(fd, SOCKET_READ | SOCKET_EXCEP);
-		log("enter m_callback\n");
+		log("enter AcceptNewSocket, socket=%d from %s:%d\n", fd, ip_str, port);
 		m_callback(m_callback_data, NETLIB_MSG_CONNECT, (net_handle_t)fd, NULL);
-		log("leave m_callback\n");
+		log("leave AcceptNewSocket, socket=%d from %s:%d\n", fd, ip_str, port);
 	}
 }
 
