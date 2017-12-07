@@ -326,7 +326,7 @@ void CBaseSocket::_AcceptNewSocket()
 
 		snprintf(ip_str, sizeof(ip_str), "%d.%d.%d.%d", ip >> 24, (ip >> 16) & 0xFF, (ip >> 8) & 0xFF, ip & 0xFF);
 
-		log("AcceptNewSocket, socket=%d from %s:%d\n", fd, ip_str, port);
+		log("AcceptNewSocket000, socket=%d from %s:%d\n", fd, ip_str, port);
 		log("AcceptNewSocket111, socket=%d from %s:%d\n", fd, ip_str, port);
 
 		pSocket->SetSocket(fd);
