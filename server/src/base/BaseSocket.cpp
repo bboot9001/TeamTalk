@@ -339,7 +339,9 @@ void CBaseSocket::_AcceptNewSocket()
 		_SetNonblock(fd);
 		AddBaseSocket(pSocket);
 		CEventDispatch::Instance()->AddEvent(fd, SOCKET_READ | SOCKET_EXCEP);
+		log("enter m_callback\n");
 		m_callback(m_callback_data, NETLIB_MSG_CONNECT, (net_handle_t)fd, NULL);
+		log("leave m_callback\n");
 	}
 }
 
