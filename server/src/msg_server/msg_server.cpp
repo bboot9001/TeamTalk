@@ -38,6 +38,7 @@ void msg_serv_callback(void* callback_data, uint8_t msg, uint32_t handle, void* 
 void Stop(int signo)
 {
     log("receive signal:%d", signo);
+    printf("receive signal:%d\n", signo);
     switch(signo)
     {
     case SIGINT:
