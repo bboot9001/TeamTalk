@@ -34,6 +34,23 @@ void msg_serv_callback(void* callback_data, uint8_t msg, uint32_t handle, void* 
 	}
 }
 
+// for debug
+void Stop(int signo)
+{
+    log("receive signal:%d", signo);
+    switch(signo)
+    {
+    case SIGINT:
+    case SIGTERM:
+    case SIGQUIT:
+        netlib_stop_event();
+        break;
+    default:
+        cout<< "unknown signal"<<endl;
+        _exit(0);
+    }
+}
+
 
 int main(int argc, char* argv[])
 {
@@ -45,6 +62,7 @@ int main(int argc, char* argv[])
 	}
 
 	signal(SIGPIPE, SIG_IGN);
+	signal(SIGINT, Stop);//for debug
 	srand(time(NULL));
 
 	log("MsgServer max files can open: %d ", getdtablesize());
